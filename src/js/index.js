@@ -18,5 +18,5 @@ root.render(<Layout />)
 //AQUI NO TOQUES NADA ANGGIE!!
 //paso 1: que las views usen el state que yo tengo
 //paso 2: encontrar como llamar las acciones
-//paso 3: implementar las acciones (mi amigo el console.log)
+//paso 3: implementar las acciones (solo con console log("esta accion esta funcionando)"))
 //paso 4: fetch
