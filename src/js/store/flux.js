@@ -1,30 +1,48 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
+			contacts: [
 				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
+					id: 1,
+					name: "Anggie Alava",
+					country: "Ecuador",
+					email: "anggie@example.com",
+					phone: "123-456-7890",
 				},
 				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
+					id: 1,
+					name: "Anggie Alava",
+					country: "Ecuador",
+					email: "anggie@example.com",
+					phone: "123-456-7890",
+				},
+				{
+					id: 1,
+					name: "Anggie Alava",
+					country: "Ecuador",
+					email: "anggie@example.com",
+					phone: "123-456-7890",
+				},
+				{
+					id: 1,
+					name: "Anggie Alava",
+					country: "Ecuador",
+					email: "anggie@example.com",
+					phone: "123-456-7890",
+				},
 			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
+			addContact: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
+			editContact: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-			changeColor: (index, color) => {
+			deleteContact: (index, color) => {
 				//get the store
 				const store = getStore();
 

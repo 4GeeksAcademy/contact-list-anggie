@@ -1,9 +1,9 @@
 //import react into the bundle
 import React from 'react'
-import {createRoot} from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 
 //include your index.scss file into the bundle
-import "../styles/index.css";
+
 
 //import your own components
 import Layout from './layout.js'
@@ -12,5 +12,11 @@ import Layout from './layout.js'
 const root = createRoot(document.querySelector("#app"))
 
 //render your react application
-root.render(<Layout/>)
+root.render(<Layout />)
 
+
+//AQUI NO TOQUES NADA ANGGIE!!
+//paso 1: que las views usen el state que yo tengo
+//paso 2: encontrar como llamar las acciones
+//paso 3: implementar las acciones (mi amigo el console.log)
+//paso 4: fetch
