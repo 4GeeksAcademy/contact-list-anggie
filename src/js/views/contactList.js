@@ -1,5 +1,7 @@
 import React from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+import ContactCard from "../component/contactCard"
 
 
 const ContactList = () => {
@@ -7,16 +9,8 @@ const ContactList = () => {
 
 	return (
 		<div>
-			{store.contacts.map((contact) => (
-				<div key={contact.id}>
-					<p>Name: {contact.name}</p>
-					<p>Country: {contact.country}</p>
-					<p>Email: {contact.email}</p>
-					<p>Phone: {contact.phone}</p>
-					<button onClick={() => actions.editContact(contact.id)}> Edit Contact</button>
-					<button onClick={() => actions.deleteContact(contact.id)}>Delete Contact</button>
-				</div>
-			))}
+			<Link to="/addcontact" className="btn btn-success">Add new Contact</Link>
+			<ContactCard />
 		</div>
 	);
 };

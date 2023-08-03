@@ -3,14 +3,14 @@ import { Context } from "../store/appContext";
 import CardDesign from "./cardDesign";
 
 
-const ContactCard = () => {
+let ContactCard = () => {
 	const { store, actions } = React.useContext(Context);
 
 	return (
-		<div className="container">
-			<div className="row">
+		<div className="mt-5">
+			<div className="list-group">
 				{store.contacts.map((contact) => (
-					<div className="col mb-4 mb-4" key={contact.id}>
+					<div className="list-group-item" key={contact.id}>
 						<CardDesign
 							contact={contact}
 							onEdit={actions.editContact}
