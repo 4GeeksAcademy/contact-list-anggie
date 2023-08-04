@@ -9,7 +9,7 @@ let ContactCard = () => {
 
 	return (
 		<div id="wrap" className="mt-5">
-			<Link id="btn-addContact" to="/addcontact" className="btn btn-success">Add new Contact</Link>
+			<Link to="/addcontact" className="btn btn-success">Add new Contact</Link>
 	
 			<div id="contact" className="list-group">
 				{store.contacts.map((contact) => (

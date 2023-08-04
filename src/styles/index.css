@@ -13,8 +13,12 @@
   padding: 0;
 }
 
-#trash {
+#trash,
+#edit {
   padding-left: 50px;
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 #contact {
@@ -39,4 +43,17 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#col-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+#icon {
+  color: rgb(83, 82, 82);
+}
+
+.show {
+  display: block;
 }

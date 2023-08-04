@@ -32,12 +32,6 @@ const AddContact = () => {
     navigate('/')
   };
 
-  // const handlelImputChange = (e) => {
-  //   const updateContact = { ...newContact, [e.target.id]: e.target.value };
-  //   console.log(updateContact)
-  // }
-
-  // // 
 
   return (
     <div className="mt-5">
