@@ -1,6 +1,5 @@
 import React from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 import ContactCard from "../component/contactCard"
 
 
@@ -9,7 +8,6 @@ const ContactList = () => {
 
 	return (
 		<div>
-			<Link to="/addcontact" className="btn btn-success">Add new Contact</Link>
 			<ContactCard />
 		</div>
 	);

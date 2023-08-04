@@ -1,82 +1,103 @@
 import React, { useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 
 const AddContact = () => {
-  const { actions } = React.useContext(Context);
-  const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const context = React.useContext(Context);
+  const params = useParams()
+  const navigate = useNavigate()
 
+  let contact
+  if (params.contact) {
+    [contact] = context.store.contacts.filter((c) => c.id == params.contact)
+  }
+  else {
+    contact = {
+      name: '',
+      address: '',
+      email: '',
+      phone: ''
+    }
+  }
 
+  const [newContact, setNewContact] = useState(contact);
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newContact = { name, country, email, phone };
-    actions.addContact(newContact);
-    setName("");
-    setCountry("");
-    setEmail("");
-    setPhone("");
+    let dataForm = new FormData(e.target)
+    let contact = Object.fromEntries(dataForm)
+    context.actions.addContact(contact);
+    navigate('/')
   };
+
+  // const handlelImputChange = (e) => {
+  //   const updateContact = { ...newContact, [e.target.id]: e.target.value };
+  //   console.log(updateContact)
+  // }
+
+  // // 
 
   return (
     <div className="mt-5">
       <h1 className="text-center">ADD NEW CONTACT</h1>
-      <ul className="list-group">
+      <ul className="list-group" >
         <li className="list-group-item">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label for="name" className="form-label">Full Name</label>
+              <label htmlFor="name" className="form-label">Full Name</label>
               <input
                 id="name"
                 className="form-control"
                 type="text"
                 placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                defaultValue={contact.name}
+                name="name"
               />
             </div>
             <div className="mb-3">
-              <label for="address" className="form-label">Address</label>
+              <label htmlFor="address" className="form-label">Address</label>
               <input
                 id="address"
                 className="form-control"
                 type="text"
                 placeholder="Enter address"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                defaultValue={contact.address}
+                name="address"
               />
             </div>
             <div className="mb-3">
-              <label for="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">Email</label>
               <input
                 id="email"
                 className="form-control"
                 type="email"
                 placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                defaultValue={contact.email}
+                name="email"
               />
             </div>
             <div className="mb-3">
-              <label for="phone" className="form-label">Phone</label>
+              <label htmlFor="phone" className="form-label">Phone</label>
               <input
                 id="phone"
                 className="form-control"
-                type="number"
+                type="phone"
                 placeholder="Enter phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                defaultValue={contact.phone}
+                name="phone"
+              />
+              <input
+                type="hidden"
+                name="id"
+                defaultValue={contact.id}
               />
             </div>
             <div className="d-grid gap-2">
               <button className="btn btn-primary" type="submit">Save</button>
             </div>
-            <Link to="/contactList">or get back to contacts</Link>
+            <Link to="/">or get back to contacts</Link>
           </form>
         </li>
       </ul>
@@ -88,7 +109,4 @@ export default AddContact;
 
 
 
- //const [contact, setContact] = useState({
-//   name: "", 
-//   country: "", etc
-// })esto es lo que deberia hacer paa tener un solo estado en lugar de varios
+// en lugar del navigate debe ir un modal que tiene un botn que redirecciona a la contact list con un mensaje de exito!! BONITO!

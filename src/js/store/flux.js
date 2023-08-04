@@ -5,28 +5,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				{
 					id: 1,
 					name: "Anggie Alava",
-					country: "Ecuador",
+					address: "Ecuador",
 					email: "anggie@example.com",
 					phone: "123-456-7890",
 				},
 				{
 					id: 2,
-					name: "Anggie Alava",
-					country: "Ecuador",
+					name: "Guena",
+					address: "Ecuador",
 					email: "anggie@example.com",
 					phone: "123-456-7890",
 				},
 				{
 					id: 3,
 					name: "Anggie Alava",
-					country: "Ecuador",
+					address: "Ecuador",
 					email: "anggie@example.com",
 					phone: "123-456-7890",
 				},
 				{
 					id: 4,
 					name: "Anggie Alava",
-					country: "Ecuador",
+					address: "Ecuador",
 					email: "anggie@example.com",
 					phone: "123-456-7890",
 				},
@@ -35,21 +35,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			// Use getActions to call a function within a fuction
 			addContact: newContact => {
-				console.log("Add funciona!")
+				const store = getStore()
+				let contacts = [...store.contacts]
+				if (newContact.id !== "") {
 
+					let index = contacts.findIndex((c) => c.id == newContact.id)
+					contacts[index] = newContact
+					setStore({ contacts })
+				} else {
+					newContact['id'] = contacts.length + 1
+					contacts.push(newContact)
+					setStore({ contacts })
+				}
 			},
-			editContact: (id, updatedContacts) => {
-				console.log("Edit funciona")
 
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
 			deleteContact: (index) => {
-				console.log("Delete funciona")
-				// //get the store 
-				// const store = getStore();
-				// //reset the global store
+				console.log(index)
+				const store = getStore()
+				let contacts = [...store.contacts]
+				contacts = contacts.filter((c) => c.id != index)
+				setStore({ contacts })
 
 			}
 		}

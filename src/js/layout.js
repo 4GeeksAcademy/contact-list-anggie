@@ -16,9 +16,11 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <Routes>
-          <Route path="/contactList" element={<ContactList />} />
+          <Route path="/" element={<ContactList />} />
           <Route path="/addContact" element={<AddContact />} />
+          <Route path="/editContact/:contact" element={<AddContact />} />
           <Route path="*" element={<h1>Not found!</h1>} />
+
         </Routes>
       </BrowserRouter>
     </div>
