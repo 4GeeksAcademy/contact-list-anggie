@@ -14,7 +14,7 @@ const AddContact = () => {
   }
   else {
     contact = {
-      name: '',
+      full_name: '',
       address: '',
       email: '',
       phone: ''
@@ -40,14 +40,14 @@ const AddContact = () => {
         <li className="list-group-item">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">Full Name</label>
+              <label htmlFor="full_name" className="form-label">Full Name</label>
               <input
-                id="name"
+                id="full_name"
                 className="form-control"
                 type="text"
                 placeholder="Full Name"
-                defaultValue={contact.name}
-                name="name"
+                defaultValue={contact.full_name}
+                name="full_name"
               />
             </div>
             <div className="mb-3">
@@ -87,6 +87,12 @@ const AddContact = () => {
                 name="id"
                 defaultValue={contact.id}
               />
+              <input
+                type="hidden"
+                name="agenda_slug"
+                defaultValue="anggie_agenda"
+              />
+
             </div>
             <div className="d-grid gap-2">
               <button className="btn btn-primary" type="submit">Save</button>
@@ -102,5 +108,3 @@ const AddContact = () => {
 export default AddContact;
 
 
-
-// en lugar del navigate debe ir un modal que tiene un botn que redirecciona a la contact list con un mensaje de exito!! BONITO!

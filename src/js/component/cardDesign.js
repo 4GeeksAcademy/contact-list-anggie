@@ -15,7 +15,7 @@ const CardDesign = ({ contact, onEdit, onDelete }) => {
                     <img id="avatar" className="position-absolute top-0 start-0 p-3 ms-5" src={`https://picsum.photos/120/120?random=${contact.id}`} alt="Avatar" />
                 </div>
                 <div id="col-wrap" className="col">
-                    <h5>{contact.name}</h5>
+                    <h5>{contact.full_name}</h5>
                     <p id="icon" className="fas fa-map-pin"> {contact.address}</p>
                     <p id="icon" className="fas fa-envelope">  {contact.email}</p>
                     <p id="icon" className="fas fa-phone"> {contact.phone}</p>
@@ -53,3 +53,6 @@ const CardDesign = ({ contact, onEdit, onDelete }) => {
 };
 
 export default CardDesign;
+
+
+//considerar mover el modal a un componente individual

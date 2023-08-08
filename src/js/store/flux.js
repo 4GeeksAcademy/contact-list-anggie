@@ -1,60 +1,75 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			contacts: [
-				{
-					id: 1,
-					name: "Anggie Alava",
-					address: "Ecuador",
-					email: "anggie@example.com",
-					phone: "123-456-7890",
-				},
-				{
-					id: 2,
-					name: "Guena Labois",
-					address: "Francia",
-					email: "guena@example.com",
-					phone: "123-456-7890",
-				},
-				{
-					id: 3,
-					name: "Nancy Monte",
-					address: "Japon",
-					email: "nancy@example.com",
-					phone: "123-456-7890",
-				},
-				{
-					id: 4,
-					name: "Saul Rami",
-					address: "Ecuador",
-					email: "saul@example.com",
-					phone: "123-456-7890",
-				},
-			]
+			contacts: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			addContact: newContact => {
+
+			loadSomeData: async () => {
+				let response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/anggie_agenda")
+				let data = await response.json()
+				setStore({ contacts: data })
+			},
+
+			addContact: async newContact => {
 				const store = getStore()
 				let contacts = [...store.contacts]
 				if (newContact.id !== "") {
-
 					let index = contacts.findIndex((c) => c.id == newContact.id)
 					contacts[index] = newContact
-					setStore({ contacts })
+					let body = { ...newContact }
+					delete body.id
+					let response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${newContact.id}`,
+						{
+
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
+							method: "PUT",
+							body: JSON.stringify(body)
+						})
+					if (!response.ok) console.log('Error updating')
+					else setStore({ contacts })
 				} else {
-					newContact['id'] = contacts.length + 1
-					contacts.push(newContact)
-					setStore({ contacts })
+					let body = { ...newContact }
+					delete body.id
+					let response = await fetch(`https://playground.4geeks.com/apis/fake/contact/`,
+						{
+
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
+							method: "POST",
+							body: JSON.stringify(body)
+						})
+					if (!response.ok) console.log('Error creating')
+					else getActions().loadSomeData()
+
 				}
+
 			},
 
-			deleteContact: (index) => {
+			deleteContact: async (index) => {
 				console.log(index)
 				const store = getStore()
-				let contacts = [...store.contacts]
-				contacts = contacts.filter((c) => c.id != index)
-				setStore({ contacts })
+				let response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${index}`,
+					{
+
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						},
+						method: "DELETE"
+					})
+				if (!response.ok) console.log("Error deleting")
+				else {
+					let contacts = [...store.contacts]
+					contacts = contacts.filter((c) => c.id != index)
+					setStore({ contacts })
+
+				}
 
 			}
 		}
